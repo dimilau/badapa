@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Offence;
+use App\Offender;
 
 class BoardController extends Controller
 {
@@ -27,10 +28,14 @@ class BoardController extends Controller
         }
         $offences = null;
         if (!empty($condition)) {
-            $offences = DB::table('offences')
+            $offences = DB::table('offenders')
+                ->join('offences', 'offenders.id', '=', 'offences.offender_id')
+                ->select('offenders.id', 'offenders.ic_passport', 'offenders.name', DB::raw('COUNT(offenders.id) as offences'))
                 ->where($condition)
+                ->groupBy('offenders.id', 'offenders.ic_passport', 'offenders.name')
                 ->get();
         }
+        
         return view('board.search', ['offences' => $offences]);
     }
 
@@ -41,13 +46,24 @@ class BoardController extends Controller
 
     public function store(Request $request)
     {
-        $offence = request()->validate([
+        $post = request()->validate([
             'ic_passport' => 'required',
             'name' => 'required',
             'company_worked' => 'required',
             'offence_type' => 'required'
         ]);
-        Offence::create($offence);
+
+        // Search if have existing Offender        
+        $offender = Offender::where('ic_passport', $post['ic_passport'])->first();
+        
+        if(is_null($offender)){
+            $offender = Offender::create($post);
+        }
+        $offender->offences()->create($post);
+        
+        
+        //Offence::create($post);
+        
         return redirect()->action('BoardController@add')
             ->with('success', 'Offence added successfully');
     }

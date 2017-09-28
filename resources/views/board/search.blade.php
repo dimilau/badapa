@@ -32,13 +32,13 @@
                         <table class="table table-striped table-bordered">
                             <thead>
                                 <tr>
-                                    <th>I.C/Passport</th><th>Name</th><th>Company Worked</th>
+                                    <th>I.C/Passport</th><th>Name</th><th>Number of offences</th>
                                 </tr>
                             </thead>
                             <tbody>
                             @if (count($offences) > 0)
                                 @foreach ($offences as $offence)
-                                <tr><td>{{ $offence->ic_passport }}</td><td>{{ $offence->name }}</td><td>{{ $offence->company_worked }}</td></tr>
+                                <tr><td>{{ $offence->ic_passport }}</td><td>{{ $offence->name }}</td><td>{{ $offence->offences }}</td></tr>
                                 @endforeach
                             @else
                                 <tr><td colspan="3">No result</td></tr>
