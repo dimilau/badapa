@@ -23,7 +23,7 @@
                             <p>{{ $success }}</p>
                         </div>
                     @endif
-                    <form action="{{ action('BoardController@store') }}" method="POST">
+                    <form action="{{ action('BoardController@store') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="">I.C./Passport</label>
@@ -53,7 +53,12 @@
                                     Police case
                                 </label>
                             </div>
-                            <p class="help-block">Choose one and upload supporting photos/documents in the next field.</p>                            
+                            <p class="help-block">Choose one and upload supporting photos in the next field.</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Attachments</label>
+                            <input type="file" class="form-control" name="attachments[]" multiple/>
+                            <p class="help-block">Only PDF/JPEG. Select 1 or more. File size limit: 2MB.</p>
                         </div>
                         <button type="submit" class="btn btn-default">Add</button>
                     </form>                    

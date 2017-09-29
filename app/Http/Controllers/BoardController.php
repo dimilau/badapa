@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Offence;
 use App\Offender;
+use App\Attachment;
 
 class BoardController extends Controller
 {
@@ -50,16 +51,36 @@ class BoardController extends Controller
             'ic_passport' => 'required',
             'name' => 'required',
             'company_worked' => 'required',
-            'offence_type' => 'required'
+            'offence_type' => 'required',
+            'attachments.*' => 'required|mimetypes:application/pdf,image/jpeg|size:2048'
         ]);
 
-        // Search if have existing Offender        
         $offender = Offender::where('ic_passport', $post['ic_passport'])->first();
         
         if(is_null($offender)){
             $offender = Offender::create($post);
         }
-        $offender->offences()->create($post);
+
+        $offence = $offender->offences()->create($post);
+
+        if($request->hasFile('attachments')){
+            foreach($request->attachments as $attachment){
+                $path = $attachment->store('public/attachments');
+                $filename = basename($path);
+                $offence->attachments()->create([
+                    'filename' => $filename
+                ]);
+            };
+        }
+        
+        
+        // if($request->hasFile('photo')){
+        //     
+        //     $filename = basename($path);
+        //     $offence->photos()->create([
+        //         'filename' => $path
+        //     ]);
+        // }
         
         
         //Offence::create($post);
