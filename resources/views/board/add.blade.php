@@ -38,6 +38,11 @@
                             <input type="text" name="company_worked" value="{{ old('company_worked') }}" class="form-control" placeholder="Company worked in">
                         </div>
                         <div class="form-group">
+                            <label for="">Description</label>
+                            <textarea name="description" class="form-control" rows="4" cols="50">{{ old('description') }}</textarea>
+                            <p class="help-block">Please describe the offence in detail.</p>
+                        </div>
+                        <div class="form-group">
                             <label for="">Types of offences</label>                            
                             <div class="radio">
                                 <label>
@@ -58,7 +63,7 @@
                         <div class="form-group">
                             <label for="">Attachments</label>
                             <input type="file" class="form-control" name="attachments[]" multiple/>
-                            <p class="help-block">Only PDF/JPEG. Select 1 or more. File size limit: 2MB.</p>
+                            <p class="help-block">Only PDF/JPEG. Select 1 or more. File size limit: 5MB.</p>
                         </div>
                         <button type="submit" class="btn btn-default">Add</button>
                     </form>                    

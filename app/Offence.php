@@ -12,6 +12,7 @@ class Offence extends Model
     }
 
     protected $fillable = [
+        'description',
     	'company_worked',
     	'offence_type'
     ];

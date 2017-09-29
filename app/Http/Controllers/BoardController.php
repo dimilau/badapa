@@ -50,9 +50,11 @@ class BoardController extends Controller
         $post = request()->validate([
             'ic_passport' => 'required',
             'name' => 'required',
+            'description' => 'required',
             'company_worked' => 'required',
             'offence_type' => 'required',
-            'attachments.*' => 'required|mimetypes:application/pdf,image/jpeg|size:2048'
+            'attachments' => 'required',
+            'attachments.*' => 'required|mimetypes:application/pdf,image/jpeg|between:40,5120'
         ]);
 
         $offender = Offender::where('ic_passport', $post['ic_passport'])->first();

@@ -17,6 +17,7 @@ class CreateOffencesTable extends Migration
             $table->increments('id');
             $table->string('company_worked');
             $table->string('offence_type');
+            $table->text('description');
             $table->integer('offender_id');
             $table->timestamps();
         });
