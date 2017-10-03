@@ -27,9 +27,9 @@ class BoardController extends Controller
         if (!is_null($ic_passport)) {
             $condition[] = ['ic_passport', '=', $ic_passport];
         }
-        $offences = null;
+        $offenders = null;
         if (!empty($condition)) {
-            $offences = DB::table('offenders')
+            $offenders = DB::table('offenders')
                 ->join('offences', 'offenders.id', '=', 'offences.offender_id')
                 ->select('offenders.id', 'offenders.ic_passport', 'offenders.name', DB::raw('COUNT(offenders.id) as offences'))
                 ->where($condition)
@@ -37,12 +37,18 @@ class BoardController extends Controller
                 ->get();
         }
         
-        return view('board.search', ['offences' => $offences]);
+        return view('board.search', ['offenders' => $offenders]);
     }
 
     public function add()
     {        
         return view('board.add');
+    }
+
+    public function profile($id)
+    {
+        $offender = Offender::where('id', $id)->first();
+        return view('board.profile', ['offender' => $offender]);
     }
 
     public function store(Request $request)

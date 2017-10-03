@@ -22,7 +22,7 @@
                     </form>
                 </div>                
             </div>
-            @if ($offences)
+            @if ($offenders)
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Search Results</h3>
@@ -36,9 +36,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @if (count($offences) > 0)
-                                @foreach ($offences as $offence)
-                                <tr><td>{{ $offence->ic_passport }}</td><td>{{ $offence->name }}</td><td>{{ $offence->offences }}</td></tr>
+                            @if (count($offenders) > 0)
+                                @foreach ($offenders as $offender)
+                                <tr><td><a href="{{ route('board.profile', ['id' => $offender->id]) }}">{{ $offender->ic_passport }}</a></td><td>{{ $offender->name }}</td><td>{{ $offender->offences }}</td></tr>
                                 @endforeach
                             @else
                                 <tr><td colspan="3">No result</td></tr>

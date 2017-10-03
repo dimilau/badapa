@@ -17,4 +17,5 @@ Route::get('/', function () {
 Route::get('/board', 'BoardController@index');
 Route::get('/board/search', 'BoardController@search');
 Route::get('/board/add', 'BoardController@add');
+Route::get('/board/profile/{id}', 'BoardController@profile')->name('board.profile');
 Route::post('/board/store', 'BoardController@store');
