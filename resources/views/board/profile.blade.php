@@ -20,7 +20,7 @@
                     <h4>Offence Type</h4>
                     <p>loss, damage to or misuse of the organisation’s property through negligence or carelessness</p>
                     <h4>Description</h4>
-                    <p>{{ str_replace("<br /><br />", "</p>\n<p>", nl2br($offence->description)) }}</p>
+                    <p>{!! nl2br($offence->description) !!}</p>
                     <h4>Attachments</h4>
                     <ul>
                     @foreach ($offence->attachments as $key => $attachment)
