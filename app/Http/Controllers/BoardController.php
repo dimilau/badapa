@@ -10,6 +10,11 @@ use App\Attachment;
 
 class BoardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         return view('board.index');
@@ -80,18 +85,6 @@ class BoardController extends Controller
                 ]);
             };
         }
-        
-        
-        // if($request->hasFile('photo')){
-        //     
-        //     $filename = basename($path);
-        //     $offence->photos()->create([
-        //         'filename' => $path
-        //     ]);
-        // }
-        
-        
-        //Offence::create($post);
         
         return redirect()->action('BoardController@add')
             ->with('success', 'Offence added successfully');

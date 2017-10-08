@@ -1,6 +1,6 @@
-@extends('layouts.board')
+@extends('layouts.app')
 
-@section('board.content')
+@section('content')
 <div class="container">
     <div class="row">
         <div class="col-xs-12">
