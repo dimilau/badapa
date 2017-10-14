@@ -56,7 +56,7 @@ class BoardController extends Controller
         return view('board.profile', ['offender' => $offender]);
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $post = request()->validate([
             'ic_passport' => 'required',
