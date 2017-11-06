@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
                 <h3 class="panel-title">Add Offences</h3>
@@ -23,7 +23,7 @@
                             <p>{{ $success }}</p>
                         </div>
                     @endif
-                    <form action="{{ action('BoardController@store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ action('HomeController@store') }}" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="">I.C./Passport</label>

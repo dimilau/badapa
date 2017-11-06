@@ -12,7 +12,7 @@
             </div>
         
         </div>
-        <div class="col-xs-12 col-md-9">
+        <div class="col-xs-12 col-md-6">
         @foreach ($offender->offences as $offence)
             <div class="panel panel-default">
                 <div class="panel-heading">{{ $offence->company_worked}}</div>

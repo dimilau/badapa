@@ -38,8 +38,8 @@
                     <!-- Left Side Of Navbar -->
                     @auth
                     <ul class="nav navbar-nav">
-                        <li class="{{ app('request')->is('board/search') ? 'active' : '' }}"><a href="{{ action('BoardController@search') }}">Search</a></li>
-                        <li class="{{ app('request')->is('board/add') ? 'active' : '' }}"><a href="{{ action('BoardController@add') }}">Add</a></li>
+                        <li class="{{ app('request')->is('home/search') ? 'active' : '' }}"><a href="{{ action('HomeController@search') }}">Search</a></li>
+                        <li class="{{ app('request')->is('home/add') ? 'active' : '' }}"><a href="{{ action('HomeController@add') }}">Add</a></li>
                     </ul>
                     @endauth
 

@@ -17,11 +17,11 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/board', 'BoardController@index');
-Route::get('/board/search', 'BoardController@search');
-Route::get('/board/add', 'BoardController@add');
-Route::get('/board/profile/{id}', 'BoardController@profile')->name('board.profile');
-Route::post('/board/store', 'BoardController@store');
+Route::get('/home/search', 'HomeController@search');
+Route::get('/home/profile/{id}', 'HomeController@profile')->name('home.profile');
+Route::get('/home/add', 'HomeController@add');
+Route::post('/home/store', 'HomeController@store');
+
 Route::get('/user/profile', 'UserController@profile');
 Route::post('/user/store', 'UserController@store');
 Route::post('/user/updatePassword', 'UserController@updatePassword');
