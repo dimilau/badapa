@@ -25,3 +25,7 @@ Route::post('/board/store', 'BoardController@store');
 Route::get('/user/profile', 'UserController@profile');
 Route::post('/user/store', 'UserController@store');
 Route::post('/user/updatePassword', 'UserController@updatePassword');
+Route::get('/manage/users', 'ManageController@users');
+Route::get('/manage/user/{id}', 'ManageController@user')->name('manage.user');
+Route::post('/manage/store', 'ManageController@store');
+Route::post('manage/destroy/{id}', 'ManageController@destroy');
