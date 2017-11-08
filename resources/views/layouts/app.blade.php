@@ -40,6 +40,7 @@
                     <ul class="nav navbar-nav">
                         <li class="{{ app('request')->is('home/search') ? 'active' : '' }}"><a href="{{ action('HomeController@search') }}">Search</a></li>
                         <li class="{{ app('request')->is('home/add') ? 'active' : '' }}"><a href="{{ action('HomeController@add') }}">Add</a></li>
+                        <li class="{{ app('request')->is('manage') ? 'active' : '' }}"><a href="{{ action('ManageController@index') }}">Manage</a></li>
                     </ul>
                     @endauth
 
@@ -57,7 +58,7 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ action('UserController@profile') }}">Profile</a>
+                                        <a href="{{ action('ProfileController@index') }}">Profile</a>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

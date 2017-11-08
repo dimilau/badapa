@@ -14,7 +14,7 @@
                             <p>{{ $success }}</p>
                         </div>
                     @endif
-                    <form action="{{ action('UserController@store') }}" class="form-horizontal" method="POST">
+                    <form action="{{ action('ProfileController@store') }}" class="form-horizontal" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label class="control-label col-md-4">Name</label>
@@ -51,7 +51,7 @@
                     @if ($success = Session::get('success-password'))
                         <div class="alert alert-success">{{ $success }}</div>
                     @endif
-                    <form action="{{ action('UserController@updatePassword') }}" method="post" role="form" class="form-horizontal">
+                    <form action="{{ action('ProfileController@storePassword') }}" method="post" role="form" class="form-horizontal">
                         {{csrf_field()}}
                         <div class="form-group{{ $errors->has('old') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Old Password</label>

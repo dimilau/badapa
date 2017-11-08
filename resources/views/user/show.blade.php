@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
+
+
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <ol class="breadcrumb">
+                    <li><a href="{{ action('ManageController@index') }}">Manage</a></li>
+                    <li><a href="{{ action('UserController@list') }}">Manage Users</a></li>
+                    <li class="active">{{ $user->name }}</li>
+                </ol>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h1 class="panel-title">User</h1>
@@ -14,7 +21,7 @@
                                 <p>{{ $success }}</p>
                             </div>
                         @endif
-                        <form action="{{ action('ManageController@store') }}" method="POST" class="form-horizontal">
+                        <form action="{{ action('UserController@store') }}" method="POST" class="form-horizontal">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">ID</label>

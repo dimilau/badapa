@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -16,45 +19,48 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function profile()
+    public function list(Request $request)
     {
-        $user = \Auth::user();
-        return view('user.profile', ['user' => $user]);
+        if (Gate::allows('list-users')) {
+            $request->user()->authorizeRoles(['admin']);
+            $users = User::with('credit')->get();
+            return view('user.list', ['users' => $users]);
+        }        
+    }
+
+    public function show($id)
+    {
+        $user = User::where('id', $id)->first();
+        $roles = Role::all();
+        return view('user.show', ['user' => $user, 'roles' => $roles]);
     }
 
     public function store(Request $request)
     {
         $post = request()->validate([
-            'name' => 'required|min:6'
+            'name' => 'required|min:6',
+            'id' => 'required|integer',
+            'email' => 'required|email',
+            'verified' => 'required|integer',
+            'count' => 'required|integer',
+            'roles' => 'required|array'
         ]);
-        
-        \Auth::user()->fill($post)->save();
+        $user = User::findOrFail($post['id']);
+        $user->fill($post);
+        $user->credit->fill($post);
+        $user->push();
+        $user->roles()->sync(array_key_exists('roles', $post) ? $post['roles']:[]);
 
         return back()
-            ->with('success-details', 'Your details updated successfully');
+            ->with('success', 'The user details has been updated.');
     }
 
-    public function updatePassword(Request $request)
+    public function destroy($id)
     {
-        $post = request()->validate([
-            'old' => 'required',
-            'password' => 'required|min:6|confirmed',
-        ]);
-        
-        $user = \Auth::user();
-        $hashPassword = $user->password;
-        
-        if (\Hash::check($post['old'], $hashPassword)) {
-            $user->fill([
-                'password' => \Hash::make($post['password'])
-            ])->save();
-            return back()
-                ->with('success-password', 'Your password has been changed');
-        }
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return back()
+            ->with('success', 'The user has been deleted');
     }
 }
