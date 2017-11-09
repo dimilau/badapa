@@ -10,15 +10,23 @@ class UsersTableSeeder extends Seeder
     {
         $role_client = Role::where('name', 'client')->first();
         $role_admin = Role::where('name', 'admin')->first();
+        $role_super_admin = Role::where('name', 'super admin')->first();
+        
 
-        $client = new User();
-        $client->name = 'Client Name';
-        $client->email = 'client@example.com';
-        $client->password = bcrypt('secret');
-        $client->verified = '1';
-        $client->save();
-        $client->credit()->create(['count' => 0]);
-        $client->roles()->attach($role_client);
+
+        $i = 1;
+        while($i <= 20) {
+            $client = new User();
+            $client->name = 'Client ' . $i;
+            $client->email = 'client' . $i . '@example.com';
+            $client->password = bcrypt('secret');
+            $client->verified = '1';
+            $client->save();
+            $client->credit()->create(['count' => 3]);
+            $client->roles()->attach($role_client);
+            $i++;
+        }
+        
 
         $admin = new User();
         $admin->name = 'Admin Name';

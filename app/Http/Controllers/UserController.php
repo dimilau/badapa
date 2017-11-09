@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Role;
 
@@ -21,11 +22,50 @@ class UserController extends Controller
 
     public function list(Request $request)
     {
-        if (Gate::allows('list-users')) {
-            $request->user()->authorizeRoles(['admin']);
-            $users = User::with('credit')->get();
+        $get = request()->validate([
+            'name' => 'nullable',
+            'email' => 'nullable',
+            'verified' => 'nullable',
+            'role' => 'nullable',
+            'count' => 'nullable|integer'
+        ]);
+        if (empty($get)) {
+            $users = User::with(['credit', 'roles'])->simplePaginate(10);
             return view('user.list', ['users' => $users]);
-        }        
+        } else {            
+            $request->flash();
+            $q = User::with(['credit', 'roles']);
+            
+            if (array_key_exists('name', $get) && !is_null($get['name'])) {
+                $q = $q->where('name', 'LIKE', $get['name']);
+            }
+            if (array_key_exists('email', $get) && !is_null($get['email'])) {
+                $q = $q->where('email', 'LIKE', $get['email']);
+            }
+            if (array_key_exists('verified', $get) && !is_null($get['verified'])) {
+                $q = $q->where('verified', $get['verified']);
+            }
+            if (array_key_exists('role', $get) && !is_null($get['role'])) {
+                $q = $q->whereHas('roles', function ($query) use ($get) {
+                    $query->where('name', '=', $get['role']);
+                });
+            }
+            if (array_key_exists('count', $get) && !is_null($get['count'])) {
+                $q = $q->whereHas('credit', function ($query) use ($get) {
+                    $query->where('count', '=', $get['count']);
+                    
+                });
+            }
+            $users = $q->simplePaginate(10);
+            return view('user.list', ['users' => $users, 'get' => $get]);
+        }
+        
+        
+        
+        //if (Gate::allows('list-users')) {
+            //$request->user()->authorizeRoles(['admin']);
+            
+        //}        
     }
 
     public function show($id)
