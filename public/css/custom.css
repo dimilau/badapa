@@ -1,0 +1,9 @@
+.cell-yes {
+  color: green;
+}
+
+.cell-no {
+  color: red;
+  font-weight: bold;
+}
+

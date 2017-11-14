@@ -15,5 +15,6 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'failed_verified' => 'Your account is inactive yet. Please confirm your e-mail address.'
+    'failed_verified' => 'Your account is inactive yet. Please confirm your e-mail address.',
+    'unapproved_account' => 'Your account is not approve by us yet. Please contact us for more information.'
 ];

@@ -14,7 +14,7 @@
         <div class="col-md-3 col-xs-12">
             <div class="list-group">
                 <a href="{{ action('UserController@list') }}" class="list-group-item active">Users</a>
-                <a href="#" class="list-group-item">Offenders</a>
+                <a href="{{ action('OffenderController@list') }}" class="list-group-item">Offenders</a>
                 <a href="#" class="list-group-item">Offences</a>
             </div>
             <div class="panel panel-default">
@@ -30,6 +30,7 @@
                         <div class="form-group">
                             <label>Email</label>
                             <input type="text" name="email" class="form-control" placeHolder="Email" value="{{ old('email') ? old('email'): ''}}">
+                            <p class="help-block">Add % to match partially. E.g.: John %</p>
                         </div>
                         <div class="form-group">
                             <label>Verified</label>
@@ -37,6 +38,14 @@
                                 <option value="">-</option>
                                 <option value="1" {{ !is_null(old('verified')) && old('verified') == 1 ? 'selected':'' }}>Verified</option>
                                 <option value="0" {{ !is_null(old('verified')) && old('verified') == 0 ? 'selected':'' }}>Not Verified</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Approved</label>
+                            <select name="approved" class="form-control">
+                                <option value="">-</option>
+                                <option value="1" {{ !is_null(old('approved')) && old('approved') == 1 ? 'selected':'' }}>Approved</option>
+                                <option value="0" {{ !is_null(old('approved')) && old('approved') == 0 ? 'selected':'' }}>Not Approved</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -73,9 +82,9 @@
                 </div>
                 <div class="panel-body">                    
                     <div class="table-responsive">
-                        <table class="table table-bordered" data-table="users-table">
+                        <table class="table table-bordered table-user" data-table="list-table">
                             <tr>
-                                <th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Count</th><th>Action</th>
+                                <th>ID</th><th>Name</th><th>Email</th><th>Role</th><th>Verified</th><th>Approved</th><th>Count</th><th>Action</th>
                             </tr>
                             @foreach ($users as $user)
                                 <tr>
@@ -86,7 +95,9 @@
                                     @foreach ($user->roles as $role)
                                     {{ $role->name }}
                                     @endforeach
-                                    </td>                                
+                                    </td>
+                                    <td class="{{ $user->verified == 0 ? 'cell-no' : 'cell-yes' }}">{{ $user->verified == 0 ? 'No' : 'Yes' }}</td>
+                                    <td class="{{ $user->approved == 0 ? 'cell-no' : 'cell-yes' }}">{{ $user->approved == 0 ? 'No' : 'Yes' }}</td>
                                     <td>{{$user->credit->count}}</td>
                                     <td>
                                         <form action="{{ action('UserController@destroy', ['id' => $user->id]) }}" method="POST" class="form-delete">

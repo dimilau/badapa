@@ -47,8 +47,15 @@ class LoginController extends Controller
         // Check if email is verified
         $email = $request->get($this->username());
         $user = User::where($this->username(), $email)->first();
+        if(is_null($user)){
+            return $this->sendUserNotExistResponse($request, 'auth.failed');
+        }
         if ($user->verified == 0) {
             return $this->sendNotVerifiedResponse($request, 'auth.failed_verified');
+        }
+        if ($user->approved == 0) {
+            return back()
+                ->with('status', trans('auth.unapproved_account'));
         }
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
@@ -70,6 +77,13 @@ class LoginController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+    protected function sendUserNotExistResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
     }
 
     protected function sendNotVerifiedResponse(Request $request)

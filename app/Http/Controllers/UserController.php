@@ -23,9 +23,10 @@ class UserController extends Controller
     public function list(Request $request)
     {
         $get = request()->validate([
-            'name' => 'nullable',
+            'ic_passport' => 'nullable',
             'email' => 'nullable',
             'verified' => 'nullable',
+            'approved' => 'nullable',
             'role' => 'nullable',
             'count' => 'nullable|integer'
         ]);
@@ -44,6 +45,9 @@ class UserController extends Controller
             }
             if (array_key_exists('verified', $get) && !is_null($get['verified'])) {
                 $q = $q->where('verified', $get['verified']);
+            }
+            if (array_key_exists('approved', $get) && !is_null($get['approved'])) {
+                $q = $q->where('approved', $get['approved']);
             }
             if (array_key_exists('role', $get) && !is_null($get['role'])) {
                 $q = $q->whereHas('roles', function ($query) use ($get) {
@@ -82,6 +86,7 @@ class UserController extends Controller
             'id' => 'required|integer',
             'email' => 'required|email',
             'verified' => 'required|integer',
+            'approved' => 'required|integer',
             'count' => 'required|integer',
             'roles' => 'required|array'
         ]);

@@ -21,7 +21,7 @@ require('./bootstrap');
 //     el: '#app'
 // });
 
-$('table[data-table="users-table"]').on('click', '.form-delete', function(e){
+$('table[data-table="list-table"]').on('click', '.form-delete', function(e){
    e.preventDefault();
    var $form=$(this);
    $('#confirm').modal({backdrop: 'static', keyboard: false})

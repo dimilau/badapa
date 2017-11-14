@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -61,6 +59,17 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Approved</label>
+                                <div class="col-sm-10">
+                                    <select name="approved" class="form-control">
+                                        <option value="1" {{ $user->approved ? 'selected':'' }}>Yes</option>
+                                        <option value="0" {{ !$user->approved ? 'selected':'' }}>No</option>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Created at</label>
                                 <div class="col-sm-10">
