@@ -29,3 +29,7 @@ $('table[data-table="list-table"]').on('click', '.form-delete', function(e){
            $form.submit();
        })
 });
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })

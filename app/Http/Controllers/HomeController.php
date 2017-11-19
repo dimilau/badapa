@@ -40,6 +40,7 @@ class HomeController extends Controller
         if (!is_null($ic_passport)) {
             $condition[] = ['ic_passport', '=', $ic_passport];
         }
+        $condition[] = ['offenders.approved', '=', '1'];
         $offenders = null;
         if (!empty($condition)) {
             $offenders = DB::table('offenders')

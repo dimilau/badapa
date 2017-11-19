@@ -11,6 +11,11 @@ class Offender extends Model
         return $this->hasMany('App\Offence');
     }
 
+    public function approved_offences()
+    {
+        return $this->offences()->where('approved', '=', 1);
+    }
+
     protected $fillable = [
     	'ic_passport',
         'name',

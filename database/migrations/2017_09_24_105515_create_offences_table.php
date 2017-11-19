@@ -15,6 +15,7 @@ class CreateOffencesTable extends Migration
     {
         Schema::create('offences', function (Blueprint $table) {
             $table->increments('id');
+            $table->tinyInteger('approved')->default(0);
             $table->string('company_worked');
             $table->string('offence_type');
             $table->text('description');

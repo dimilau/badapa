@@ -785,6 +785,10 @@ $('table[data-table="list-table"]').on('click', '.form-delete', function (e) {
   });
 });
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+});
+
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {

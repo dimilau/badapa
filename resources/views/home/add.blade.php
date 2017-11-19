@@ -31,37 +31,39 @@
                         </div>
                         <div class="form-group">
                             <label for="">Name</label>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name">
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name of the offender">
                         </div>
                         <div class="form-group">
                             <label for="">Company worked in</label>
-                            <input type="text" name="company_worked" value="{{ old('company_worked') }}" class="form-control" placeholder="Company worked in">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Description</label>
-                            <textarea name="description" class="form-control" rows="4" cols="50">{{ old('description') }}</textarea>
-                            <p class="help-block">Please describe the offence in detail.</p>
+                            <input type="text" name="company_worked" value="{{ old('company_worked') }}" class="form-control" placeholder="Name of the company the offender worked in">
                         </div>
                         <div class="form-group">
                             <label for="">Types of offences</label>                            
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="offence_type" value="disciplinary" 
-                                        @if(old('offence_type') == 'disciplinary') checked @endif>
-                                    Disciplinary issue
+                                    <input type="radio" name="offence_type" value="minor" 
+                                        @if(old('offence_type') == 'minor') checked @endif>
+                                    Minor disciplinary concern 
                                 </label>
+                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Minor disciplinary concern"></span>
                             </div>
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="offence_type" value="police"
-                                        @if(old('offence_type') == 'police') checked @endif>
-                                    Police case
+                                    <input type="radio" name="offence_type" value="major"
+                                        @if(old('offence_type') == 'major') checked @endif>
+                                    Major disciplinary concern
                                 </label>
+                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Major disciplinary concern"></span>
                             </div>
                             <p class="help-block">Choose one and upload supporting photos in the next field.</p>
                         </div>
                         <div class="form-group">
-                            <label for="">Attachments</label>
+                            <label for="">Description</label>
+                            <textarea name="description" class="form-control" rows="4" cols="50">{{ old('description') }}</textarea>
+                            <p class="help-block">Please describe the offence in detail (Not more than 300 words). </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Select and upload supporting documents of the offender.</label>
                             <input type="file" class="form-control" name="attachments[]" multiple/>
                             <p class="help-block">Only PDF/JPEG. Select 1 or more. File size limit: 5MB.</p>
                         </div>
