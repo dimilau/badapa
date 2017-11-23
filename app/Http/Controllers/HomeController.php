@@ -41,8 +41,9 @@ class HomeController extends Controller
             $condition[] = ['ic_passport', '=', $ic_passport];
         }
         $condition[] = ['offenders.approved', '=', '1'];
+        $condition[] = ['offences.approved', '=', '1'];
         $offenders = null;
-        if (!empty($condition)) {
+        if (count($condition) > 1) {
             $offenders = DB::table('offenders')
                 ->join('offences', 'offenders.id', '=', 'offences.offender_id')
                 ->select('offenders.id', 'offenders.ic_passport', 'offenders.name', DB::raw('COUNT(offenders.id) as offences'))
@@ -70,6 +71,8 @@ class HomeController extends Controller
         $post = request()->validate([
             'ic_passport' => 'required',
             'name' => 'required',
+            'photos' => 'required',
+            'photos.*' => 'required|mimetypes:image/jpeg',
             'description' => 'required',
             'company_worked' => 'required',
             'offence_type' => 'required',
@@ -84,6 +87,19 @@ class HomeController extends Controller
         }
 
         $offence = $offender->offences()->create($post);
+
+        if($request->hasFile('photos')) {
+            foreach ($request->photos as $photo) {
+                $path = $photo->store('public/photos');
+                $filename = basename($path);
+                $filename_nosuffix = basename($path, '.jpeg');
+                $thumbnail = \Image::make($photo->getRealPath())->fit(120, 120);
+                $thumbnail->save(storage_path('app/public/photos/' . $filename_nosuffix . '-thumb' . '.jpeg'));
+                $offender->photos()->create([
+                    'filename' => $filename
+                ]);
+            }
+        }
 
         if($request->hasFile('attachments')){
             foreach($request->attachments as $attachment){

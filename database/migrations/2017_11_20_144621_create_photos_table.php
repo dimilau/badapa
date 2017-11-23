@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOffencesTable extends Migration
+class CreatePhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateOffencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('offences', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('approved')->default(0);
-            $table->string('company_worked');
-            $table->string('offence_type');
-            $table->text('description');
+            $table->string('filename');
             $table->uuid('offender_id');
             $table->timestamps();
         });
@@ -31,6 +28,6 @@ class CreateOffencesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('offences');
+        Schema::dropIfExists('photos');
     }
 }

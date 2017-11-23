@@ -34,6 +34,11 @@
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name of the offender">
                         </div>
                         <div class="form-group">
+                            <label for="">Photos</label>
+                            <input type="file" class="form-control" name="photos[]" multiple />
+                            <p class="help-block">Only PDF/JPEG. Select 1 or more.</p>
+                        </div>
+                        <div class="form-group">
                             <label for="">Company worked in</label>
                             <input type="text" name="company_worked" value="{{ old('company_worked') }}" class="form-control" placeholder="Name of the company the offender worked in">
                         </div>
@@ -45,7 +50,7 @@
                                         @if(old('offence_type') == 'minor') checked @endif>
                                     Minor disciplinary concern 
                                 </label>
-                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Minor disciplinary concern"></span>
+                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Minor misconduct occurs when an employee performs actions in the workplace that are unacceptable but not criminal. Examples of minor misconduct include poor task performance, excessive absences, safety violations, failure to follow directions or an unintentional leakage of information."></span>
                             </div>
                             <div class="radio">
                                 <label>
@@ -53,7 +58,7 @@
                                         @if(old('offence_type') == 'major') checked @endif>
                                     Major disciplinary concern
                                 </label>
-                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Major disciplinary concern"></span>
+                                <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Major misconduct refers to behavior that can get a person dismissed straight away from work because it is serious enough and possibly criminal. Illegal drug use at work, being drunk while on duty , stealing , sexual harassment are all examples of gross misconduct."></span>
                             </div>
                             <p class="help-block">Choose one and upload supporting photos in the next field.</p>
                         </div>

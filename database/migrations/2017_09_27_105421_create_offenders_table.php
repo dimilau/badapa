@@ -14,7 +14,7 @@ class CreateOffendersTable extends Migration
     public function up()
     {
         Schema::create('offenders', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('id');
             $table->string('ic_passport');
             $table->string('name');
             $table->tinyInteger('approved')->default(0);
