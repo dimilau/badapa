@@ -11,6 +11,11 @@ class Offence extends Model
         return $this->hasMany('App\Attachment');
     }
 
+    public function offender()
+    {
+        return $this->belongsTo('App\Offender');
+    }
+
     protected $fillable = [
         'description',
     	'company_worked',

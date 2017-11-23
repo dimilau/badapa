@@ -28,7 +28,7 @@ class UserController extends Controller
             'verified' => 'nullable',
             'approved' => 'nullable',
             'role' => 'nullable',
-            'count' => 'nullable|integer'
+            'count' => 'nullable|integer',
         ]);
         if (empty($get)) {
             $users = User::with(['credit', 'roles'])->simplePaginate(10);

@@ -36,7 +36,7 @@ class OffenderController extends Controller
                 $q = $q->where('approved', $get['approved']);
             }
             $offenders = $q->simplePaginate(10);
-            return view('offender.list', ['offenders' => $offenders]);
+            return view('offender.list', ['offenders' => $offenders, 'get' => $get]);
         }
     }
 
