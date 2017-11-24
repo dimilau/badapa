@@ -36,4 +36,26 @@ class OffenceController extends Controller
             return view('offence.list', ['offences' => $offences, 'get' => $get]);
         }
     }
+
+    public function show($id)
+    {
+        $offence = Offence::where('id', $id)->first();
+        return view('offence.show', ['offence' => $offence]);
+    }
+
+    public function store(Request $request)
+    {
+        $post = request()->validate([
+            'id' => 'required',
+            'company_worked' => 'required',
+            'description' => 'required',
+            'approved' => 'required'            
+        ]);
+        $offence = Offence::findOrFail($post['id']);
+        $offence->fill($post);
+        $offence->push();
+
+        return back()
+            ->with('success', 'The offence details has been updated.');
+    }
 }

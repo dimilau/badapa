@@ -12,7 +12,7 @@ class CreateOffencesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {        
         Schema::create('offences', function (Blueprint $table) {
             $table->increments('id');
             $table->tinyInteger('approved')->default(0);
@@ -20,7 +20,13 @@ class CreateOffencesTable extends Migration
             $table->string('offence_type');
             $table->text('description');
             $table->uuid('offender_id');
-            $table->timestamps();
+            $table->timestamps();            
+        });
+
+        Schema::table('offences', function (Blueprint $table) {
+            $table->foreign('offender_id')
+                ->references('id')->on('offenders')
+                ->onDelete('cascade');
         });
     }
 

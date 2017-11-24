@@ -35,3 +35,5 @@ Route::get('/manage/offender/{id}', 'OffenderController@show');
 Route::post('/manage/offender/store', 'OffenderController@store');
 Route::post('/manage/offender/destroy/{id}', 'OffenderController@destroy');
 Route::get('/manage/offences', 'OffenceController@list');
+Route::get('/manage/offence/{id}', 'OffenceController@show');
+Route::post('/manage/offence/store', 'OffenceController@store');

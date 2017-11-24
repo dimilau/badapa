@@ -6,12 +6,12 @@
             <div class="col-md-12">
                 <ol class="breadcrumb">
                     <li><a href="{{ action('ManageController@index') }}">Manage</a></li>
-                    <li><a href="{{ action('OffenderController@list') }}">Manage Offenders</a></li>
-                    <li class="active">{{ $offender->name }}</li>
+                    <li><a href="{{ action('OffenderController@list') }}">Manage Offences</a></li>
+                    <li class="active">{{ $offence->id }}</li>
                 </ol>
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h1 class="panel-title">Offender</h1>
+                        <h1 class="panel-title">Offence</h1>
                     </div>
                     <div class="panel-body">
                         @if ($success = Session::get('success'))
@@ -19,32 +19,32 @@
                                 <p>{{ $success }}</p>
                             </div>
                         @endif
-                        <form action="{{ action('OffenderController@store') }}" method="POST" class="form-horizontal">
+                        <form action="{{ action('OffenceController@store') }}" method="POST" class="form-horizontal">
                             {{ csrf_field() }}
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">ID</label>
                                 <div class="col-sm-10">
-                                    <p class="form-control-static">{{ $offender->id }}</p>
-                                    <input type="hidden" name="id" value="{{ $offender->id }}">
+                                    <p class="form-control-static">{{ $offence->id }}</p>
+                                    <input type="hidden" name="id" value="{{ $offence->id }}">
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('ic_passport') ? ' has-error' : '' }}">
-                                <label class="col-sm-2 control-label">IC/Passport</label>
+                            <div class="form-group{{ $errors->has('company_worked') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">Company Worked</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="ic_passport" class="form-control" placeholder="IC/Passport" value="{{ old('ic_passport') ? old('ic_passport') : $offender->ic_passport }}" required>
-                                    @if ($errors->has('ic_passport'))
+                                    <input type="text" name="company_worked" class="form-control" placeholder="Company Worked" value="{{ old('company_worked') ? old('company_worked') : $offence->company_worked }}" required>
+                                    @if ($errors->has('company_worked'))
                                         <span class="help-block">
-                                            <strong>{{ $errors->first('ic_passport') }}</strong>
+                                            <strong>{{ $errors->first('company_worked') }}</strong>
                                         </span>
                                     @endif
                                 </div>
                             </div>
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label class="col-sm-2 control-label">Name</label>
+                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">description</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" placeholder="Name" value="{{ old('name') ? old('name') : $offender->name }}" required>
+                                    <textarea name="description" class="form-control" rows="4" cols="50">{{ old('description') ? old('description') : $offence->description }}</textarea>
                                     @if ($errors->has('name'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('name') }}</strong>
@@ -57,8 +57,8 @@
                                 <label class="col-sm-2 control-label">Approved</label>
                                 <div class="col-sm-10">
                                     <select name="approved" class="form-control">
-                                        <option value="1" {{ $offender->approved ? 'selected':'' }}>Yes</option>
-                                        <option value="0" {{ !$offender->approved ? 'selected':'' }}>No</option>
+                                        <option value="1" {{ $offence->approved ? 'selected':'' }}>Yes</option>
+                                        <option value="0" {{ !$offence->approved ? 'selected':'' }}>No</option>
                                     </select>
                                 </div>
                             </div>
@@ -66,13 +66,13 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Created at</label>
                                 <div class="col-sm-10">
-                                    <p class="form-control-static">{{ $offender->created_at}}</p>
+                                    <p class="form-control-static">{{ $offence->created_at}}</p>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Updated at</label>
                                 <div class="col-sm-10">
-                                    <p class="form-control-static">{{ $offender->updated_at}}</p>
+                                    <p class="form-control-static">{{ $offence->updated_at}}</p>
                                 </div>
                             </div>
                                                         

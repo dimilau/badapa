@@ -54,7 +54,7 @@
                             @if (count($offences) > 0)
                                 @foreach ($offences as $offence)
                                     <tr>
-                                        <td>{{ $offence->id }}</td>   
+                                        <td><a href="{{ action('OffenceController@show', ['id' => $offence->id]) }}">{{ $offence->id }}</a></td>
                                         <td><a href="{{ action('OffenderController@show', ['id' => $offence->offender->id]) }}">{{ $offence->offender->name }}</a></td>
                                         <td>{{ $offence->offence_type == 'minor' ? 'Minor':'Major' }}</td>
                                         <td>{{ $offence->company_worked }}</td>
