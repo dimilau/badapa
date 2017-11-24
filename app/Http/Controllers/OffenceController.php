@@ -39,7 +39,7 @@ class OffenceController extends Controller
 
     public function show($id)
     {
-        $offence = Offence::where('id', $id)->first();
+        $offence = Offence::where('id', $id)->first();        
         return view('offence.show', ['offence' => $offence]);
     }
 

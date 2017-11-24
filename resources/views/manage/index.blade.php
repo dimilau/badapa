@@ -18,6 +18,9 @@
                     <h2>Manage Offenders</h2>
                     <hr/>
                     <a class="btn btn-default" href="{{ action('OffenderController@list') }}" role="button">Manage Offenders</a>
+                    <h2>Manage Offences</h2>
+                    <hr/>
+                    <a class="btn btn-default" href="{{ action('OffenceController@list') }}" role="button">Manage Offence</a>
                 </div>
             </div>
         </div>

@@ -25,11 +25,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $user = \Auth::user();
+        $offences = $user->offences;
+        return view('home', ['offences' => $offences]);        
     }
 
     public function search(Request $request)
     {
+        $get = request()->validate([
+            'name' => 'nullable|min:5',
+            'ic_passport' => 'nullable',      
+        ]);
         $name = $request->input('name');
         $ic_passport = $request->input('ic_passport');
         
@@ -43,7 +49,7 @@ class HomeController extends Controller
         $condition[] = ['offenders.approved', '=', '1'];
         $condition[] = ['offences.approved', '=', '1'];
         $offenders = null;
-        if (count($condition) > 1) {
+        if (count($condition) > 2) {
             $offenders = DB::table('offenders')
                 ->join('offences', 'offenders.id', '=', 'offences.offender_id')
                 ->select('offenders.id', 'offenders.ic_passport', 'offenders.name', DB::raw('COUNT(offenders.id) as offences'))
@@ -86,7 +92,9 @@ class HomeController extends Controller
             $offender = Offender::create($post);
         }
 
+        $user = \Auth::user();
         $offence = $offender->offences()->create($post);
+        $offence->user()->associate($user);
 
         if($request->hasFile('photos')) {
             foreach ($request->photos as $photo) {

@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Offender;
 use App\Offence;
+use App\User;
 
 class OffencesTableSeeder extends Seeder
 {
@@ -50,6 +51,8 @@ class OffencesTableSeeder extends Seeder
 
         while($i <= 19) {
             $offender = Offender::where('ic_passport', '000000' . $i)->first();
+            $user = User::where('email', 'user' . rand(0, 15) . '@example.com')->first();
+
             for ($j = 0; $j <= rand(0,3); $j++) {
                 $offence = new Offence();
                 $offence->approved = rand(0, 1);
@@ -57,6 +60,7 @@ class OffencesTableSeeder extends Seeder
                 $offence->offence_type = $offence_types[array_rand($offence_types, 1)];
                 $offence->description = "Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec tincidunt, ligula vitae ultricies sollicitudin, sapien justo ullamcorper metus, sit amet ornare ligula diam in nisi. Nullam finibus, ipsum at maximus eleifend, dui lectus ullamcorper augue, non viverra lectus ex rutrum odio. Aliquam blandit commodo dui id dapibus.";                
                 $offence->offender()->associate($offender);
+                $offence->user()->associate($user);
                 $offence->save();
             }
             $i++;

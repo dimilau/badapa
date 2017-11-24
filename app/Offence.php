@@ -16,6 +16,11 @@ class Offence extends Model
         return $this->belongsTo('App\Offender');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
+
     protected $fillable = [
         'description',
     	'company_worked',

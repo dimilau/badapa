@@ -13,52 +13,22 @@ class UsersTableSeeder extends Seeder
         $role_super_admin = Role::where('name', 'super admin')->first();
 
         $i = 1;
-        while($i <= 7) {
+        while($i < 31) {
             $client = new User();
-            $client->name = 'Client ' . $i;
-            $client->email = 'client' . $i . '@example.com';
+            $client->name = 'User ' . $i;
+            $client->email = 'user' . $i . '@example.com';
             $client->password = bcrypt('secret');
-            $client->verified = '0';
-            $client->approved = '0';
+            $client->verified = rand(0, 1);
+            $client->approved = rand(0, 1);
             $client->save();
-            $client->credit()->create(['count' => 3]);
-            $client->roles()->attach($role_client);
-            $i++;
-        }
-        while($i <= 14) {
-            $client = new User();
-            $client->name = 'Client ' . $i;
-            $client->email = 'client' . $i . '@example.com';
-            $client->password = bcrypt('secret');
-            $client->verified = '1';
-            $client->approved = '0';
-            $client->save();
-            $client->credit()->create(['count' => 3]);
-            $client->roles()->attach($role_client);
-            $i++;
-        }
-        while($i <= 21) {
-            $client = new User();
-            $client->name = 'Client ' . $i;
-            $client->email = 'client' . $i . '@example.com';
-            $client->password = bcrypt('secret');
-            $client->verified = '1';
-            $client->approved = '1';
-            $client->save();
-            $client->credit()->create(['count' => 3]);
-            $client->roles()->attach($role_client);
-            $i++;
-        }
-        while($i <= 25) {
-            $admin = new User();
-            $admin->name = 'Admin ' . $i;
-            $admin->email = 'admin'  . $i . '@example.com';
-            $admin->password = bcrypt('secret');
-            $admin->verified = '1';
-            $admin->approved = '1';
-            $admin->save();
-            $admin->credit()->create(['count' => 0]);
-            $admin->roles()->attach($role_admin);
+            $client->credit()->create(['count' => rand(0, 10)]);
+            if ($i < 21) {
+                $client->roles()->attach($role_client);
+            } else if ($i < 25) {
+                $client->roles()->attach($role_admin);
+            } else if ($i < 31) {
+                $client->roles()->attach($role_super_admin);
+            }            
             $i++;
         }
     }

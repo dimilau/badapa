@@ -3,6 +3,14 @@
 @section('content')
 <div class="container">
     <div class="row">
+        <div class="col-xs-12">
+            <ol class="breadcrumb">
+                <li><a href="{{ action('HomeController@index') }}">Home</a></li>
+                <li class="active">Search</li>
+            </ol>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -15,9 +23,14 @@
                             <label for="">I.C./Passport</label>
                             <input type="text" name="ic_passport" value="{{ app('request')->input('ic_passport') }}" class="form-control" placeholder="I.C./Passport">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="">Name</label>
                             <input type="text" name="name" value="{{ app('request')->input('name') }}" class="form-control" placeholder="Name">
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
                         </div>
                         <button type="submit" class="btn btn-default">Search</button>
                     </form>

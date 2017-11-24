@@ -19,6 +19,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function offences()
+    {
+        return $this->hasMany('App\Offence');
+    }
+
     public function authorizeRoles($roles)
     {
         if (is_array($roles)) {

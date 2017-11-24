@@ -20,6 +20,7 @@ class CreateOffencesTable extends Migration
             $table->string('offence_type');
             $table->text('description');
             $table->uuid('offender_id');
+            $table->integer('user_id')->unsigned();
             $table->timestamps();            
         });
 
