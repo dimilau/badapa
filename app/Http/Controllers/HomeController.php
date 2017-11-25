@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Offender;
+use App\Offence;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,8 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = \Auth::user();
-        $offences = $user->offences;
+        $offences = Auth::user()->offences;
         return view('home', ['offences' => $offences]);        
     }
 
@@ -34,28 +35,41 @@ class HomeController extends Controller
     {
         $get = request()->validate([
             'name' => 'nullable|min:5',
-            'ic_passport' => 'nullable',      
+            'ic_passport' => 'nullable',  
         ]);
-        $name = $request->input('name');
-        $ic_passport = $request->input('ic_passport');
         
-        $condition = [];
-        if (!is_null($name)) {
-            $condition[] = ['name', 'LIKE', '%'.$name.'%'];
+        $condition = array(
+            array('offenders.approved', '=', '1'),
+            array('offences.approved', '=', '1'),
+        );
+        if (array_key_exists('name', $get) && !empty($get['name'])) {
+            $condition[] = ['name', 'LIKE', '%'.$get['name'].'%'];
         }
-        if (!is_null($ic_passport)) {
-            $condition[] = ['ic_passport', '=', $ic_passport];
+        if (array_key_exists('ic_passport', $get) && !empty($get['ic_passport'])) {
+            $condition[] = ['ic_passport', '=', $get['ic_passport']];
         }
-        $condition[] = ['offenders.approved', '=', '1'];
-        $condition[] = ['offences.approved', '=', '1'];
+
         $offenders = null;
-        if (count($condition) > 2) {
+        $credit = Auth::user()->credit;    
+        //query database if credit count is more than 0
+        if (count($condition) > 2 && $credit->count > 0) {
             $offenders = DB::table('offenders')
                 ->join('offences', 'offenders.id', '=', 'offences.offender_id')
                 ->select('offenders.id', 'offenders.ic_passport', 'offenders.name', DB::raw('COUNT(offenders.id) as offences'))
                 ->where($condition)
                 ->groupBy('offenders.id', 'offenders.ic_passport', 'offenders.name')
                 ->get();
+
+            // deduct credit            
+            $credit->count = $credit->count - 1;
+            $credit->save();
+        }
+
+        //show credit message
+        if ($credit->count > 0) {
+            $request->session()->flash('status', 'You have ' . $credit->count . 'credit(s) left.');
+        } else {
+            $request->session()->flash('status', 'You have nore more credits left.');
         }
         
         return view('home.search', ['offenders' => $offenders]);
@@ -92,9 +106,11 @@ class HomeController extends Controller
             $offender = Offender::create($post);
         }
 
-        $user = \Auth::user();
-        $offence = $offender->offences()->create($post);
-        $offence->user()->associate($user);
+        $offence = new Offence;
+        $offence->fill($post);
+        $offence->offender()->associate($offender);
+        $offence->user()->associate(Auth::user());
+        $offence->save();
 
         if($request->hasFile('photos')) {
             foreach ($request->photos as $photo) {

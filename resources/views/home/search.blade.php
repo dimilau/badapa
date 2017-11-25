@@ -17,6 +17,11 @@
                     <h3 class="panel-title">Search Offence</h3>
                 </div>
                 <div class="panel-body">
+                    @if ($status = Session::get('status'))
+                        <div class="alert alert-success">
+                            <p>{{ $status }}</p>
+                        </div>
+                    @endif
                     <form action="{{ action('HomeController@search') }}" method="GET">
                         {{ csrf_field() }}
                         <div class="form-group">
