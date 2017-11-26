@@ -30,6 +30,15 @@ $('table[data-table="list-table"]').on('click', '.form-delete', function(e){
        })
 });
 
+$('.form-search').on('click', '.btn-search', function(e){
+    e.preventDefault();
+    var $form=$(this).closest('form');
+    $('#confirm').modal({backdrop: 'static', keyboard: false})
+        .on('click', '#confirm-btn', function() {
+            $form.submit();
+        })
+ });
+
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
-  })
+});

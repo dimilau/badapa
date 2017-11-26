@@ -22,7 +22,7 @@
                             <p>{{ $status }}</p>
                         </div>
                     @endif
-                    <form action="{{ action('HomeController@search') }}" method="GET">
+                    <form data-form="search-form" class="form-search" action="{{ action('HomeController@search') }}" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label for="">I.C./Passport</label>
@@ -37,7 +37,7 @@
                                 </span>
                             @endif
                         </div>
-                        <button type="submit" class="btn btn-default">Search</button>
+                        <button class="btn btn-default btn-search" type="submit">Search</button>
                     </form>
                 </div>                
             </div>
@@ -71,5 +71,21 @@
         </div>
     </div>
 </div>
-
+<div class="modal" id="confirm">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Search Confirmation</h4>
+            </div>
+            <div class="modal-body">
+                <p>This search will use 1 credit, do you want to proceed to search?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-primary" id="confirm-btn">Search</button>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

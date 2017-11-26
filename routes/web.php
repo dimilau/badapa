@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/search', 'HomeController@search');
+Route::post('/home/search', 'HomeController@search');
 Route::get('/home/profile/{id}', 'HomeController@profile')->name('home.profile');
 Route::get('/home/add', 'HomeController@add');
 Route::post('/home/store', 'HomeController@store');

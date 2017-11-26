@@ -778,15 +778,23 @@ __webpack_require__(9);
 // });
 
 $('table[data-table="list-table"]').on('click', '.form-delete', function (e) {
-  e.preventDefault();
-  var $form = $(this);
-  $('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function () {
-    $form.submit();
-  });
+    e.preventDefault();
+    var $form = $(this);
+    $('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#delete-btn', function () {
+        $form.submit();
+    });
+});
+
+$('.form-search').on('click', '.btn-search', function (e) {
+    e.preventDefault();
+    var $form = $(this).closest('form');
+    $('#confirm').modal({ backdrop: 'static', keyboard: false }).on('click', '#confirm-btn', function () {
+        $form.submit();
+    });
 });
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip();
 });
 
 /***/ }),

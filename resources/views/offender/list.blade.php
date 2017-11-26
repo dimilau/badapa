@@ -17,10 +17,10 @@
                 <a href="{{ action('OffenderController@list') }}" class="list-group-item active">Offenders</a>
                 <a href="{{ action('OffenceController@list') }}" class="list-group-item">Offences</a>
             </div>
-            <div class="panel panel-default">
+            <div class="panel panel-default panel-search">
                 <div class="panel-heading">Search</div>
                 <div class="panel-body">
-                    <form action="{{ action('OffenderController@list') }}" method="GET">
+                    <form action="{{ action('OffenderController@list') }}" method="GET" class="form-search">
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label>IC/Passport</label>

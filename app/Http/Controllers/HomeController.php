@@ -63,15 +63,15 @@ class HomeController extends Controller
             // deduct credit            
             $credit->count = $credit->count - 1;
             $credit->save();
+
+            //show credit message
+            if ($credit->count > 0) {
+                $request->session()->flash('status', 'You have ' . $credit->count . 'credit(s) left.');
+            } else {
+                $request->session()->flash('status', 'You have nore more credits left.');
+            }
         }
 
-        //show credit message
-        if ($credit->count > 0) {
-            $request->session()->flash('status', 'You have ' . $credit->count . 'credit(s) left.');
-        } else {
-            $request->session()->flash('status', 'You have nore more credits left.');
-        }
-        
         return view('home.search', ['offenders' => $offenders]);
     }
 
