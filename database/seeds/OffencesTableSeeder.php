@@ -51,7 +51,7 @@ class OffencesTableSeeder extends Seeder
 
         while($i <= 19) {
             $offender = Offender::where('ic_passport', '000000' . $i)->first();
-            $user = User::where('email', 'user' . rand(0, 15) . '@example.com')->first();
+            $user = User::where('email', 'user' . rand(1, 15) . '@example.com')->first();
 
             for ($j = 0; $j <= rand(0,3); $j++) {
                 $offence = new Offence();
