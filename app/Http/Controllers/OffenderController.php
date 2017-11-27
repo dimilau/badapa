@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Offender;
+use Auth;
 
 class OffenderController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+
     }
 
     public function list(Request $request)

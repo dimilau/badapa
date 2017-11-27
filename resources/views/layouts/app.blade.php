@@ -39,7 +39,9 @@
                     @auth
                     <ul class="nav navbar-nav">
                         <li class="{{ app('request')->is('home') ? 'active' : '' }}"><a href="{{ action('HomeController@index') }}">Home</a></li>
+                        @can('manage')
                         <li class="{{ app('request')->is('manage') ? 'active' : '' }}"><a href="{{ action('ManageController@index') }}">Manage</a></li>
+                        @endcan
                     </ul>
                     @endauth
 
