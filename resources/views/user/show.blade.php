@@ -39,6 +39,7 @@
                                     @endif
                                 </div>
                             </div>
+
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                 <label class="col-sm-2 control-label">Email</label>
                                 <div class="col-sm-10">
@@ -50,6 +51,31 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">Company Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="company_name" class="form-control" placeholder="Company Name" value="{{ old('company_name') ? old('company_name') : $user->company_name }}" required>
+                                    @if ($errors->has('company_name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('company_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('contact_number') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">Contact Number</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="contact_number" class="form-control" placeholder="Contact Number" value="{{ old('contact_number') ? old('contact_number') : $user->contact_number }}" required>
+                                    @if ($errors->has('contact_number'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('contact_number') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Verified</label>
                                 <div class="col-sm-10">

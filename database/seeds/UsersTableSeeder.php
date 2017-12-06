@@ -16,6 +16,8 @@ class UsersTableSeeder extends Seeder
         while($i < 31) {
             $client = new User();
             $client->name = 'User ' . $i;
+            $client->company_name = "My Company";
+            $client->contact_number = "+601278903456";
             $client->email = 'user' . $i . '@example.com';
             $client->password = bcrypt('secret');
             $client->verified = rand(0, 1);

@@ -85,6 +85,8 @@ class UserController extends Controller
             'name' => 'required|min:6',
             'id' => 'required|integer',
             'email' => 'required|email',
+            'company_name' => 'required|min:6',
+            'contact_number' => 'required|min:6',
             'verified' => 'required|integer',
             'approved' => 'required|integer',
             'count' => 'required|integer',

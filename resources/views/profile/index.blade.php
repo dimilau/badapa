@@ -27,6 +27,31 @@
                                 @endif
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
+                            <label class="control-label col-md-4">Company Name</label>
+                            <div class="col-md-6">
+                                <input id="company_name" type="text" class="form-control" name="company_name" value="{{ old('company_name') ? old('company_name') : $user->company_name }}">
+                                @if ($errors->has('company_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('company_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('contact_number') ? ' has-error' : '' }}">
+                            <label class="control-label col-md-4">Contact Number</label>
+                            <div class="col-md-6">
+                                <input id="contact_number" type="text" class="form-control" name="contact_number" value="{{ old('contact_number') ? old('contact_number') : $user->contact_number }}">
+                                @if ($errors->has('contact_number'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('contact_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label class="control-label col-md-4">Email</label>
                             <div class="col-md-6">

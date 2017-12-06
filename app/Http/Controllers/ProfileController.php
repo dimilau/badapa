@@ -15,7 +15,9 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $post = request()->validate([
-            'name' => 'required|min:6'
+            'name' => 'required|min:6',
+            'company_name' => 'required|min:6',
+            'contact_number' => 'required|min:6',
         ]);
         
         \Auth::user()->fill($post)->save();

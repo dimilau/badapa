@@ -29,8 +29,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <i class="glyphicon glyphicon-apple"></i>
-                        {{ config('app.name', 'Bad Apple') }}
+                        <img src="{{ asset('images/bad-apple-logo.png') }}"/>
                     </a>
                 </div>
 
