@@ -8359,3 +8359,12 @@ button.close {
   font-weight: bold;
 }
 
+.search-count {
+  color: purple;
+  font-weight: bold;
+}
+
+.cell-offence-type {
+  text-transform: capitalize;
+}
+

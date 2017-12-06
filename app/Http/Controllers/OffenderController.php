@@ -20,7 +20,7 @@ class OffenderController extends Controller
         $get = request()->validate([
             'ic_passport' => 'nullable',
             'name' => 'nullable',
-            'approved' => 'nullable',            
+            'approved' => 'nullable',
         ]);
         if (empty($get)) {
             $offenders = Offender::simplePaginate(10);

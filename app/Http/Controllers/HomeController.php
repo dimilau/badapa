@@ -136,6 +136,6 @@ class HomeController extends Controller
         }
         
         return redirect()->action('HomeController@add')
-            ->with('success', 'Offence added successfully');
+            ->with('success', 'Offence added successfully and pending for approval');
     }
 }

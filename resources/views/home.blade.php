@@ -20,7 +20,7 @@
                     <div class="list-group">
                         <a href="{{ action('HomeController@search') }}" class="list-group-item">
                             <h4 class="list-group-item-heading"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Search</h4>
-                            <p class="list-group-item-text">Search for offender. Enter offenders passport/IC, or name to search. You have {{ Auth::user()->credit->count }} search(es) left.</p>
+                            <p class="list-group-item-text">Search for offender. Enter offenders passport/IC, or name to search. You have <span class="search-count">{{ Auth::user()->credit->count }} search(es) left</span>.</p>
                         </a>
                         <a href="{{ action('HomeController@add') }}" class="list-group-item">
                             <h4 class="list-group-item-heading"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add</h4>
@@ -42,8 +42,8 @@
                                     <tr>
                                         <td>{{ $offence->offender->name }}</td>
                                         <td>{{ $offence->company_worked }}</td>
-                                        <td>{{ $offence->offence_type }}</td>
-                                        <td class="{{ $offence->approved == 0 ? 'cell-no' : 'cell-yes' }}">{{ $offence->approved == '0' ? 'No' : 'Yes' }}</td>
+                                        <td class="cell-offence-type">{{ $offence->offence_type }}</td>
+                                        <td class="{{ $offence->approved == 0 ? 'cell-no' : 'cell-yes' }}">{{ $offence->approved == '0' ? 'Pending' : 'Yes' }}</td>
                                     </tr>
                                 @endforeach
                             @else
