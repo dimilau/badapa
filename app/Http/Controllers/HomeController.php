@@ -72,7 +72,7 @@ class HomeController extends Controller
             }
         }
 
-        return view('home.search', ['offenders' => $offenders]);
+        return view('home.search', ['offenders' => $offenders, 'credit' => $credit]);
     }
 
     public function profile($id)

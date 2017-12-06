@@ -36,8 +36,8 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                        </div>
-                        <button class="btn btn-default btn-search" type="submit">Search</button>
+                        </div>                        
+                        <button class="btn btn-default btn-search" type="submit" @if ($credit->count == 0) disabled @endif>Search</button> Total credit left: {{ $credit->count }}
                     </form>
                 </div>                
             </div>
