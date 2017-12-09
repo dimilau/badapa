@@ -84,6 +84,34 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Related Offender
+                    </div>
+                    <div class="panel-body">
+                    @if (isset($offence->offender))
+                        <a href="{{ action('OffenderController@show', ['id' => $offence->offender->id]) }}">{{ $offence->offender->name }}</a>
+                    @endif
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Related Attachment(s)
+                    </div>
+                    <div class="panel-body">
+                    @if (count($offence->attachments) > 0)
+                        <ul>
+                        @foreach ($offence->attachments as $key => $attachment)
+                        <li><a href="{{ asset('storage/attachments/' . $attachment->filename) }}">Attachment {{ $key + 1 }}</a></li>
+                        @endforeach
+                        </ul>
+                    @else
+                        No attachment.
+                    @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>

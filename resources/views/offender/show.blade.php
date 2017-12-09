@@ -84,6 +84,23 @@
                         </form>
                     </div>
                 </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Related Offence(s)
+                    </div>
+                    <div class="panel-body">
+                    @if (count($offender->offences) > 0)
+                        <ul>                        
+                        @foreach ($offender->offences as $offence)
+                            <li><a href="{{ action('OffenceController@show', ['id' => $offence->id]) }}">{{ $offence->company_worked }}</a></li>
+                        @endforeach
+                        </ul>
+                    @else
+                        No related offence.
+                    @endif
+                    </div>
+                </div>
             </div>
         </div>
     </div>
