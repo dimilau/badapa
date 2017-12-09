@@ -39,6 +39,34 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
+                            <label for="company_name" class="col-md-4 control-label">Company Name</label>
+
+                            <div class="col-md-6">
+                                <input id="company_name" type="text" class="form-control" name="company_name" value="{{ old('company_name') }}" required>
+
+                                @if ($errors->has('company_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('company_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('contact_number') ? ' has-error' : '' }}">
+                            <label for="contact_number" class="col-md-4 control-label">Contact Number</label>
+
+                            <div class="col-md-6">
+                                <input id="contact_number" type="text" class="form-control" name="contact_number" value="{{ old('contact_number') }}" required>
+
+                                @if ($errors->has('contact_number'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('contact_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
