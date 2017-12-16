@@ -132,7 +132,7 @@ footer.footer {
                 <h1>Improve quality of hire by filtering out those who bring along potential bad intentions into the company!</h1>
             </div>
             <div class="col-md-6 col-md-offset-3">                
-                <a class="btn btn-default" href="{{ route('register') }}" role="button">Register</a>
+                <a class="btn btn-primary" href="{{ route('register') }}" role="button">Register</a>
             </div>
         </div>
     </div>
@@ -146,35 +146,42 @@ footer.footer {
                 <div>
                     <span class="glyphicon glyphicon-user"></span>
                     <h3>Improve Quality of Hire</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Natus, quod voluptates sed unde deleniti alias id.</p>
+                    <p>An effective background screening of potential employee can greatly increase the quality of hire in your company staffing efforts. It is crucial to be able to choose your employees correctly. Detailed information of employee's past incidents may provide critical insight to behavioural habits that could pose a threat in the future.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div>
                     <span class="glyphicon glyphicon-ok-circle"></span>
                     <h3>Improve Safety and Security</h3>
-                    <p>Consectetur, adipisicing elit. Aspernatur, deserunt nisi optio exercitationem laborum, consequatur esse aperiam.</p>
+                    <p>Frequent use of employee background checks can help greatly reduce the chance of future workplace violence. This can be achieved through filtering out applicants that could present a threat to the workplace environment. Only through knowing the actual past behaviour we can determine the suitability of our potential candidates.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div>
                     <span class="glyphicon glyphicon-sort-by-attributes-alt"></span>
-                    <h3>Decrease in Negligent Hiring Risks</h3>
-                    <p>Amet consectetur adipisicing elit. Vero vitae iure dolores ea pariatur eveniet asperiores laudantium, molestias.</p>
+                    <h3>Reduce the Risks of Negligent Hiring</h3>
+                    <p>It is common to see that many companies failed to do a background search on the employees prior to hiring and such carelessness has lead company to be liable to the wrong doings of their employees. A company could have prevented unnecessary liabilities by knowing more about the past history of the employees. To some certain extend when lawsuits are filed against them, companies often suffer immeasurable damage to their reputation and money because of it.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div>
                     <span class="glyphicon glyphicon-refresh"></span>
                     <h3>Decrease in Employee Turnover</h3>
-                    <p>Dolor sit amet consectetur adipisicing elit. Ratione, optio. Asperiores, tenetur quasi repellendus iusto.</p>
+                    <p>Background screening of new employees will drastically reduce the rate of unwanted labour turnover. The more companies know about a new hire before an employment offer is ever made, the more companies will reduce their chances of making the wrong hiring decision.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div>
+                    <span class="glyphicon glyphicon-arrow-up"></span>
+                    <h3>Improved Regulatory Compliance</h3>
+                    <p>Background screening when practise together with in-house compliance expertise, can help companies properly create a screening solution that not only satisfies the industry standards, but also state and federal regulatory requirements. Without this type of background screening program in place, company risks fines and ongoing legal issues.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div>
                     <span class="glyphicon glyphicon-arrow-up"></span>
                     <h3>Increase Profitability and Reduce Cost</h3>
-                    <p>Adipisicing elit. Ea, asperiores reprehenderit dolorem odio distinctio beatae earum.</p>
+                    <p>When all necessary controls are in place, employees will be more efficient and effective in carrying out their task without causing disruption to the company. Thus, enabling company to grow through sales increase as well as reducing unnecessary cost.</p>
                 </div>
             </div>
         </div>
@@ -216,7 +223,7 @@ footer.footer {
                 <h1>Ready to get started? Sign up now!</h1>
             </div>
             <div class="col-md-6 col-md-offset-3">                
-                <a class="btn btn-default" href="{{ route('register') }}" role="button">Register</a>                
+                <a class="btn btn-primary" href="{{ route('register') }}" role="button">Register</a>                
             </div>
         </div>
     </div>
