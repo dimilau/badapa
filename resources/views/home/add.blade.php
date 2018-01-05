@@ -38,7 +38,7 @@
                             <input type="text" name="ic_passport" value="{{ old('ic_passport') }}" class="form-control" placeholder="I.C./Passport">
                         </div>
                         <div class="form-group">
-                            <label for="">Name</label>
+                            <label for="">Name (As per identification card or passport)</label>
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name of the offender">
                         </div>
                         <div class="form-group">
@@ -72,10 +72,10 @@
                                 </label>
                                 <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Major misconduct refers to behavior that can get a person dismissed straight away from work because it is serious enough and possibly criminal. Illegal drug use at work, being drunk while on duty , stealing , sexual harassment are all examples of gross misconduct."></span>
                             </div>
-                            <p class="help-block">Choose one and upload supporting photos in the next field.</p>
+                            <p class="help-block">Select one of the offences from the above.</p>
                         </div>
                         <div class="form-group">
-                            <label for="">Description</label>
+                            <label for="">Description(Compulsary)</label>
                             <textarea name="description" class="form-control" rows="4" cols="50">{{ old('description') }}</textarea>
                             <p class="help-block">Please describe the offence in detail (Not more than 300 words). </p>
                         </div>
