@@ -36,7 +36,16 @@
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                        </div>                        
+                        </div>
+                        <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
+                            <label for="">Country</label>
+                            <input type="text" name="country" value="{{ app('request')->input('country') }}" class="form-control" placeholder="Country">
+                            @if ($errors->has('country'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('country') }}</strong>
+                                </span>
+                            @endif
+                        </div>
                         <button class="btn btn-default btn-search" type="submit" @if ($credit->count == 0) disabled @endif>Search</button> Total credit left: {{ $credit->count }}
                     </form>
                 </div>                

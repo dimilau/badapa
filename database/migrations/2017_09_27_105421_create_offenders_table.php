@@ -17,6 +17,7 @@ class CreateOffendersTable extends Migration
             $table->uuid('id')->primary();
             $table->string('ic_passport');
             $table->string('name');
+            $table->string('country');
             $table->tinyInteger('approved')->default(0);
             $table->timestamps();
         });

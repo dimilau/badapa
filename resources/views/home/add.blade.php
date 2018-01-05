@@ -42,6 +42,10 @@
                             <input type="text" name="name" value="{{ old('name') }}" class="form-control" placeholder="Name of the offender">
                         </div>
                         <div class="form-group">
+                            <label for="">Country</label>
+                            <input type="text" name="country" value="{{ old('country') }}" class="form-control" placeholder="Country of the offender">
+                        </div>
+                        <div class="form-group">
                             <label for="">Photos</label>
                             <input type="file" class="form-control" name="photos[]" multiple />
                             <p class="help-block">Only PDF/JPEG. Select 1 or more.</p>

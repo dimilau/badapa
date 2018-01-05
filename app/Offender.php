@@ -39,6 +39,7 @@ class Offender extends Model
     protected $fillable = [
     	'ic_passport',
         'name',
+        'country',
         'approved'
     ];
 }

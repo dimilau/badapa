@@ -48,11 +48,64 @@ class OffendersTableSeeder extends Seeder
             'Gyerjin',
             'Haeju',
         );
+        $offender_countries = array(
+            'Afghanistan',
+            'Armenia',
+            'Azerbaijan',
+            'Bahrain',
+            'Bangladesh',
+            'Bhutan',
+            'Brunei',
+            'Cambodia',
+            'China',
+            'Cyprus',
+            'Georgia',
+            'India',
+            'Indonesia',
+            'Iran',
+            'Iraq',
+            'Israel',
+            'Japan',
+            'Jordan',
+            'Kazakhstan',
+            'Kuwait',
+            'Kyrgyzstan',
+            'Laos',
+            'Lebanon',
+            'Malaysia',
+            'Maldives',
+            'Mongolia',
+            'Myanmar',
+            'Nepal',
+            'North Korea',
+            'Oman',
+            'Pakistan',
+            'Palestine',
+            'Philippines',
+            'Qatar',
+            'Russia',
+            'Saudi Arabia',
+            'Singapore',
+            'South Korea',
+            'Sri Lanka',
+            'Syria',
+            'Taiwan',
+            'Tajikistan',
+            'Thailand',
+            'Timor-Leste',
+            'Turkey',
+            'Turkmenistan',
+            'United Arab Emirates',
+            'Uzbekistan',
+            'Vietnam',
+            'Yemen',
+        );
         $i = 1;
         while($i < 20) {
             $offender = new Offender();
             $offender->ic_passport = '000000' . $i;
             $offender->name = $offender_names[array_rand($offender_names, 1)];
+            $offender->country = $offender_countries[array_rand($offender_countries, 1)];
             $offender->approved = rand(0, 1);
             $offender->save();
             $i++;

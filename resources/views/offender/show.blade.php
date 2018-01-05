@@ -52,6 +52,18 @@
                                     @endif
                                 </div>
                             </div>
+
+                            <div class="form-group{{ $errors->has('country') ? ' has-error' : '' }}">
+                                <label class="col-sm-2 control-label">Country</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="country" class="form-control" placeholder="Country" value="{{ old('country') ? old('country') : $offender->country }}" required>
+                                    @if ($errors->has('country'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('country') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
                             
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Approved</label>
@@ -62,6 +74,8 @@
                                     </select>
                                 </div>
                             </div>
+
+                            
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Created at</label>

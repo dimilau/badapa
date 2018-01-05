@@ -54,7 +54,8 @@ class OffenderController extends Controller
             'id' => 'required',
             'ic_passport' => 'required',
             'name' => 'required',
-            'approved' => 'required'            
+            'country' => 'required',
+            'approved' => 'required',
         ]);
         $offender = Offender::findOrFail($post['id']);
         $offender->fill($post);

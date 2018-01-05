@@ -35,7 +35,8 @@ class HomeController extends Controller
     {
         $get = request()->validate([
             'name' => 'nullable|min:5',
-            'ic_passport' => 'nullable',  
+            'ic_passport' => 'nullable',
+            'country' => 'nullable',
         ]);
         
         $condition = array(
@@ -47,6 +48,9 @@ class HomeController extends Controller
         }
         if (array_key_exists('ic_passport', $get) && !empty($get['ic_passport'])) {
             $condition[] = ['ic_passport', '=', $get['ic_passport']];
+        }
+        if (array_key_exists('country', $get) && !empty($get['country'])) {
+            $condition[] = ['country', '=', $get['country']];
         }
 
         $offenders = null;
@@ -91,6 +95,7 @@ class HomeController extends Controller
         $post = request()->validate([
             'ic_passport' => 'required',
             'name' => 'required',
+            'country' => 'required',
             'photos' => 'required',
             'photos.*' => 'required|mimetypes:image/jpeg',
             'description' => 'required',
@@ -99,9 +104,7 @@ class HomeController extends Controller
             'attachments' => 'required',
             'attachments.*' => 'required|mimetypes:application/pdf,image/jpeg|between:40,5120'
         ]);
-
-        $offender = Offender::where('ic_passport', $post['ic_passport'])->first();
-        
+        $offender = Offender::where('ic_passport', $post['ic_passport'])->first();        
         if(is_null($offender)){
             $offender = Offender::create($post);
         }
