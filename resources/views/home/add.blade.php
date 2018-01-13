@@ -48,7 +48,7 @@
                         <div class="form-group">
                             <label for="">Photos</label>
                             <input type="file" class="form-control" name="photos[]" multiple />
-                            <p class="help-block">Only PDF/JPEG. Select 1 or more.</p>
+                            <p class="help-block">Only PDF/JPEG. Select 1 or more</p>
                         </div>
                         <div class="form-group">
                             <label for="">Company worked in</label>
@@ -72,17 +72,17 @@
                                 </label>
                                 <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" title="Major misconduct refers to behavior that can get a person dismissed straight away from work because it is serious enough and possibly criminal. Illegal drug use at work, being drunk while on duty , stealing , sexual harassment are all examples of gross misconduct."></span>
                             </div>
-                            <p class="help-block">Select one of the offences from the above.</p>
+                            <p class="help-block">Select one of the offences from the above</p>
                         </div>
                         <div class="form-group">
                             <label for="">Description(Compulsary)</label>
                             <textarea name="description" class="form-control" rows="4" cols="50">{{ old('description') }}</textarea>
-                            <p class="help-block">Please describe the offence in detail (Not more than 300 words). </p>
+                            <p class="help-block">Please describe the offence in detail (Not more than 300 words) </p>
                         </div>
                         <div class="form-group">
                             <label for="">Select and upload supporting documents of the offender.</label>
                             <input type="file" class="form-control" name="attachments[]" multiple/>
-                            <p class="help-block">Only PDF/JPEG. Select 1 or more. File size limit: 5MB.</p>
+                            <p class="help-block">Only PDF/JPEG. Select 1 or more. File size limit: 5MB</p>
                         </div>
                         <button type="submit" class="btn btn-default">Add</button>
                     </form>                    
