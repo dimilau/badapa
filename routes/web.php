@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/pricing', function () {
+    return view('pricing');
+})->name('pricing');
 Auth::routes();
 Route::get('/verifyemail/{token}', 'Auth\RegisterController@verify');
 Route::get('/home', 'HomeController@index')->name('home');
