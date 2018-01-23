@@ -34,7 +34,6 @@
                 <ul class="list-group text-center">
                     <li class="list-group-item"><i class="fa fa-check"></i>Free Lifetime Membership</li>
                     <li class="list-group-item"><i class="fa fa-check"></i>Unlimited upload of offenders</li>
-                    <li class="list-group-item"><i class="fa fa-check"></i>27/7 support</li>
                 </ul>
             </div>
         </div>
